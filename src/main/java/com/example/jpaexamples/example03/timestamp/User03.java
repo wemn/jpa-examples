@@ -29,7 +29,6 @@ public class User03 {
             updatable = false,
             insertable = false)
     private LocalDateTime insertTime;
-
     public User03(String name, LocalDate birthday) {
         this.name = name;
         this.birthday = birthday;

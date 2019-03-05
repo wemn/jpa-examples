@@ -1,6 +1,7 @@
-package com.example.jpaexamples.example03;
+package com.example.jpaexamples.example03.timestamp;
 
 import com.example.jpaexamples.example03.timestamp.User03;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,7 @@ import java.time.Month;
 @SpringBootTest
 @Transactional
 @Rollback(value = false)
+@Slf4j
 public class ManagerTest {
     @PersistenceContext
     private EntityManager em;
@@ -30,5 +32,8 @@ public class ManagerTest {
     public void getUser03Test() {
         User03 u = em.find(User03.class, 1);
         u.setName("SUN");
+        em.flush();
+        em.refresh(u);
+        log.debug(u.getUpdateTime().toString());
     }
 }
